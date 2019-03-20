@@ -3,7 +3,7 @@
 Training example class
 @author: lpeng
 '''
-
+import re
 class Instance(object):
   '''A reordering training example'''
   
@@ -28,10 +28,18 @@ class Instance(object):
        src_word1, src_word2,..., src_wordn ||| freq
        freq is optional
     '''
+    indices = [m.start() for m in re.finditer(' ||| ', line)]
     pos = line.find(' ||| ')
+    if (len(indices) > 1):
+      pos = indices[-1]
+    
     words = [word_vector.get_word_index(word) for word in line[0:pos].split()]
     if pos >= 0:
-      freq = int(line[pos+5:])
+      try:
+        freq = int(line[pos+5:])
+      except:
+        freq = 1
+    #  freq = int(line[pos+5:])
     else:
       freq = 1
 

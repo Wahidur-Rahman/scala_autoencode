@@ -24,7 +24,8 @@ from nn.instance import Instance
 from nn.signals import TerminatorSignal, WorkingSignal, ForceQuitSignal
 from errors import GridentCheckingFailedError
 from vec.wordvector import WordVectors
-
+import sys
+sys.setrecursionlimit(100000)
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
