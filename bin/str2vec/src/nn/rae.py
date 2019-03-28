@@ -22,6 +22,8 @@ from scipy.spatial.distance import pdist, squareform
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+import sys
+sys.setrecursionlimit(100000)
 
 
 class InternalNode(object):
